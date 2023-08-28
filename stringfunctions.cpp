@@ -2,6 +2,8 @@
 
 size_t stringLength(const char* s)
 {
+    myAssert(s, NULL_ERROR);
+
     size_t n = 0;
 
     while (*s != '\0')
@@ -16,6 +18,11 @@ size_t stringLength(const char* s)
 void stringnCopy(char *s_copy, const char *s, size_t num)
 
 {
+    myAssert(s, NULL_ERROR);
+    myAssert(s_copy, NULL_ERROR);
+
+    myAssert(num <= stringLength(s) || sizeof(s_copy) < num, OVERLAP_ERROR);
+
     for (size_t i = 0; i < num; i++)
       {
         s_copy[i] = s[i];
@@ -24,6 +31,9 @@ void stringnCopy(char *s_copy, const char *s, size_t num)
 
 void stringCopy(char *s_copy, const char *s)
 {
+    myAssert(s, NULL_ERROR);
+    myAssert(s_copy, NULL_ERROR);
+
     while ((*s_copy = *s) != '\0')
       {
         s_copy++;
@@ -33,23 +43,31 @@ void stringCopy(char *s_copy, const char *s)
 
 int stringCompare(const char *s1, const char *s2)
 {
-    while(*s1)
-      {
-        if (*s1 != *s2)
-          {
-            return false;
-          }
+    myAssert(s1, NULL_ERROR);
+    myAssert(s2, NULL_ERROR);
 
-        s1++;
-        s2++;
+    size_t i = 0;
+
+    for (; i < min(strlen(s1), strlen(s2)); i++)
+      {
+        if (s1[i] != s2[i])
+          {
+            if (int(s1[i]) < int(s2[i]))
+                return 1;
+            else
+                return -1;
+          }
       }
 
-    return true;
+    return 0;
 }
 
 char *stringConcat(char *s1, const char *s2)
 {
-    size_t len_s1 = strlen(s1) - 1;
+    myAssert(s1, NULL_ERROR);
+    myAssert(s1, NULL_ERROR);
+
+    size_t len_s1 = strlen(s1);
 
     for (int j = 0; s2[j] != '\0'; j++)
       {
@@ -61,6 +79,8 @@ char *stringConcat(char *s1, const char *s2)
 
 char *charFind(char *str, int ch)
 {
+    myAssert(str, NULL_ERROR);
+
     while(*str != '\0')
       {
         if (*str == ch)
@@ -74,6 +94,9 @@ char *charFind(char *str, int ch)
 
 char *stringFind(const char *substr, char *str)
 {
+    myAssert(substr, NULL_ERROR);
+    myAssert(str, NULL_ERROR);
+
     size_t i = 0;
     size_t len_substr = strlen(substr);
     size_t len_str = strlen(str);
@@ -83,7 +106,7 @@ char *stringFind(const char *substr, char *str)
 
         size_t j = 0;
 
-        for (j; j < len_substr; j++)
+        for (; j < len_substr; j++)
           {
             if (substr[j] != str[i+j])
               {

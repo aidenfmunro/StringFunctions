@@ -2,9 +2,31 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdlib.h>
 
 #ifndef STRINGFUNCTIONS_H
 #define STRINGFUNCTIONS_H
+
+#define min(x, y) (((x) < (y)) ? (x) : (y))
+
+
+#define myAssert(EXPRESSION, ERROR_CODE)                                       \
+                            if (! (EXPRESSION))                                \
+                              {                                                \
+        fprintf (stderr,"%s, failed at %s:%d\n", ERROR_MSG[ERROR_CODE - SHIFT] \
+        , __FILE__, __LINE__);                                                 \
+        exit(ERROR_CODE);                                                      \
+      }
+
+enum ERRORS
+{
+    OVERLAP_ERROR   = 1,
+    NULL_ERROR      = 2
+};
+
+static const char *ERROR_MSG[] = {"The number is longer than the length of the array", "Null terminator"};
+
+static const int SHIFT = 1;
 
 size_t stringLength(const char* s);
 void stringnCopy(char *s_copy, const char *s, size_t num);
