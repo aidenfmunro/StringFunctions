@@ -15,11 +15,11 @@ int main()
 
     //printf("%d", stringCompare(a, b));
 
-    stringnCopy(a, b, 5);
-    puts(a);
+    stringnCopy(a, b, 6);
+    // puts(a);
 
     // puts("%s\n", stringnCopy(a, b, 6));
 
-    printf("%d", sizeof(a));
+    // printf("%d", sizeof(a));
 
 }

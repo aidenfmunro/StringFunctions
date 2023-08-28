@@ -21,7 +21,7 @@ void stringnCopy(char *s_copy, const char *s, size_t num)
     myAssert(s, NULL_ERROR);
     myAssert(s_copy, NULL_ERROR);
 
-    myAssert(num <= stringLength(s) || sizeof(s_copy) < num, OVERLAP_ERROR);
+    myAssert(num <= stringLength(s) && sizeof(s_copy) < num, OVERLAP_ERROR);
 
     for (size_t i = 0; i < num; i++)
       {
@@ -52,10 +52,7 @@ int stringCompare(const char *s1, const char *s2)
       {
         if (s1[i] != s2[i])
           {
-            if (int(s1[i]) < int(s2[i]))
-                return 1;
-            else
-                return -1;
+                return s1[i] - s2[i];
           }
       }
 
@@ -100,6 +97,7 @@ char *stringFind(const char *substr, char *str)
     size_t i = 0;
     size_t len_substr = strlen(substr);
     size_t len_str = strlen(str);
+
     for (; i < len_str - len_substr; i++)
       {
         bool flag = true;

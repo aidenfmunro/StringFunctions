@@ -13,7 +13,7 @@
 #define myAssert(EXPRESSION, ERROR_CODE)                                       \
                             if (! (EXPRESSION))                                \
                               {                                                \
-        fprintf (stderr,"%s, failed at %s:%d\n", ERROR_MSG[ERROR_CODE - SHIFT] \
+        fprintf (stderr,"%s, failed at %s:%d\n", #ERROR_CODE                   \
         , __FILE__, __LINE__);                                                 \
         exit(ERROR_CODE);                                                      \
       }
@@ -23,8 +23,6 @@ enum ERRORS
     OVERLAP_ERROR   = 1,
     NULL_ERROR      = 2
 };
-
-static const char *ERROR_MSG[] = {"The number is longer than the length of the array", "Null terminator"};
 
 static const int SHIFT = 1;
 
