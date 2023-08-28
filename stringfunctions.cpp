@@ -1,6 +1,6 @@
 #include "stringfunctions.h"
 
-size_t stringLength(const char* s)
+size_t stringLength(const char *s)
 {
     myAssert(s, NULL_ERROR);
 

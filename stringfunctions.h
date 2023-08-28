@@ -26,11 +26,11 @@ enum ERRORS
 
 static const int SHIFT = 1;
 
-size_t stringLength(const char* s);
+size_t stringLength(const char *s);
 void stringnCopy(char *s_copy, const char *s, size_t num);
 void stringCopy(char *s_copy, const char *s);
 int stringCompare(const char *s1, const char *s2);
-char *stringConcat(char *s1, const char* s2);
+char *stringConcat(char *s1, const char *s2);
 char *charFind(char *str, int ch);
 char *stringFind(const char *substr, char *str);
 
