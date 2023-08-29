@@ -1,3 +1,5 @@
+//! @file
+
 #include "stringfunctions.h"
 
 size_t stringLength(const char *str)
@@ -101,10 +103,13 @@ char *charFind(char *str, int chr)
 
 char *stringFind(const char *substr, char *str)
 {
+    myAssert(substr, NULL_ERROR);
+    myAssert(str, NULL_ERROR);
+
     size_t len_substr = stringLength(substr);
     size_t len_str = stringLength(str);
 
-    size_t shift[NUMBER_OF_CHARS] = {};
+    size_t shift[NUMBER_OF_CHARS] = {}; // shift
 
     for (size_t i = 0; i < NUMBER_OF_CHARS; i++)
       {
@@ -120,11 +125,9 @@ char *stringFind(const char *substr, char *str)
     
     size_t cur_pos = len_substr - 1;
 
-    int sym = 0;
-
     while (cur_pos < len_str)
       {
-        sym = findShift(substr, str, len_substr, cur_pos);
+        int sym = findShift(substr, str, len_substr, cur_pos);
 
         if (sym == FOUND)
           {
@@ -138,16 +141,19 @@ char *stringFind(const char *substr, char *str)
 }
 
 int findShift(const char* substr, const char *str, const size_t len_substr, const size_t cur_pos)
-    {
-      for(size_t j = 0; j < len_substr; j++)
-        {
-          if (substr[len_substr - j - 1] != str[cur_pos - j])
-            {
-              return str[cur_pos - j];
-            }
-        }
+{
+    myAssert(substr, NULL_ERROR);
+    myAssert(str, NULL_ERROR);
+
+    for(size_t j = 0; j < len_substr; j++)
+      {
+        if (substr[len_substr - j - 1] != str[cur_pos - j])            
+          {
+            return str[cur_pos - j];
+          }
+      }
       
-      return FOUND; 
-    }
+  return FOUND; 
+}
 
 
