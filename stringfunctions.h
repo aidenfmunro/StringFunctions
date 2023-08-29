@@ -9,6 +9,8 @@
 
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
+#define max(x, y) (((x) > (y)) ? (x) : (y))
+
 
 #define myAssert(EXPRESSION, ERROR_CODE)                                       \
                             if (! (EXPRESSION))                                \
@@ -23,8 +25,6 @@ enum ERRORS
     OVERLAP_ERROR   = 1,
     NULL_ERROR      = 2
 };
-
-static const int SHIFT = 1;
 
 size_t stringLength(const char *s);
 void stringnCopy(char *s_copy, const char *s, size_t num);

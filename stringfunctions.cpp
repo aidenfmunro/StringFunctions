@@ -21,18 +21,28 @@ void stringnCopy(char *s_copy, const char *s, size_t num)
     myAssert(s, NULL_ERROR);
     myAssert(s_copy, NULL_ERROR);
 
-    myAssert(num <= stringLength(s) && sizeof(s_copy) < num, OVERLAP_ERROR);
+    size_t len_s = stringLength(s);
 
-    for (size_t i = 0; i < num; i++)
+    myAssert(s_copy + len_s < s || s + len_s < s_copy, OVERLAP_ERROR);
+
+    size_t cut_num = min(num, len_s);
+
+    for (size_t i = 0; i < cut_num; i++)
       {
         s_copy[i] = s[i];
       }
+      
+    s_copy[cut_num - 1] = '\0';
 }
 
 void stringCopy(char *s_copy, const char *s)
 {
     myAssert(s, NULL_ERROR);
     myAssert(s_copy, NULL_ERROR);
+
+    size_t len_s = stringLength(s);
+
+    myAssert(s_copy + len_s < s || s + len_s < s_copy, OVERLAP_ERROR);
 
     while ((*s_copy = *s) != '\0')
       {
@@ -48,7 +58,7 @@ int stringCompare(const char *s1, const char *s2)
 
     size_t i = 0;
 
-    for (; i < min(strlen(s1), strlen(s2)); i++)
+    for (; i < min(stringLength(s1), stringLength(s2)); i++)
       {
         if (s1[i] != s2[i])
           {
@@ -64,7 +74,7 @@ char *stringConcat(char *s1, const char *s2)
     myAssert(s1, NULL_ERROR);
     myAssert(s1, NULL_ERROR);
 
-    size_t len_s1 = strlen(s1);
+    size_t len_s1 = stringLength(s1);
 
     for (int j = 0; s2[j] != '\0'; j++)
       {
@@ -95,8 +105,8 @@ char *stringFind(const char *substr, char *str)
     myAssert(str, NULL_ERROR);
 
     size_t i = 0;
-    size_t len_substr = strlen(substr);
-    size_t len_str = strlen(str);
+    size_t len_substr = stringLength(substr);
+    size_t len_str = stringLength(str);
 
     for (; i < len_str - len_substr; i++)
       {
