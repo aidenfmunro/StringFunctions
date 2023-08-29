@@ -84,7 +84,7 @@ char *stringConcat(char *str1, const char *str2)
     return str1;
 }
 
-char *charFind(const char *str, int chr)
+char *charFind(char *str, int chr)
 {
     myAssert(str, NULL_ERROR);
 
@@ -113,7 +113,7 @@ char *stringFind(const char *substr, char *str)
     
     for (size_t i = len_substr - 1; i > 0; i--)
       {
-        int temp = substr[i - 1];
+        size_t temp = substr[i - 1];
 
         shift[temp] = min(len_substr - i, temp);    
       }
