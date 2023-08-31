@@ -9,15 +9,15 @@
 #ifndef STRINGFUNCTIONS_H
 #define STRINGFUNCTIONS_H
 
-#define min(x,y)                \
+#define min(x, y)               \
     ({ __typeof__ (x) _x = (x); \
        __typeof__ (y) _y = (y); \
        _x < _y ? _x : _y; })
 
-#define max(a,b)                \
-    ({ __typeof__ (a) _a = (a); \
-       __typeof__ (b) _b = (b); \
-       _a > _b ? _a : _b; })
+#define max(x, y)               \
+    ({ __typeof__ (x) _x = (x); \
+       __typeof__ (y) _y = (y); \
+       _x > _y ? _x : _y; })
 
 #define myAssert(EXPRESSION, ERROR_CODE)                                       \
                             if (! (EXPRESSION))                                \
