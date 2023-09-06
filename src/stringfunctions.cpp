@@ -46,11 +46,7 @@ void stringCopy(char *str_copy, const char *str)
 
     myAssert(str_copy + len_s < str || str + len_s < str_copy, OVERLAP_ERROR);
 
-    while ((*str_copy = *str) != '\0')
-      {
-        str_copy++;
-        str++;
-      }
+    while ((*str_copy++ = *str++) != '\0') { ; }
 }
 
 int stringCompare(const char *str1, const char *str2)
